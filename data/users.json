@@ -1,0 +1,30 @@
+[
+  {
+    "id": "6b9a72cc-39ca-4f9a-8c00-b0e4bd5ac0cd",
+    "name": "harale",
+    "email": "harale.hitbullseye@gmail.com",
+    "password": "123456",
+    "createdAt": "2026-02-16T06:24:16.519Z"
+  },
+  {
+    "id": "3d334af4-467e-4b64-8ae7-1da461366489",
+    "name": "amool",
+    "email": "harale1.hitbullseye@gmail.com",
+    "password": "12345678",
+    "createdAt": "2026-02-16T06:26:24.700Z"
+  },
+  {
+    "id": "574dfd2b-e74d-40b0-996a-ff478b536fda",
+    "name": "ram",
+    "email": "amool@gmail.com",
+    "password": "qwerty",
+    "createdAt": "2026-02-16T06:28:29.791Z"
+  },
+  {
+    "id": "c50492c7-600b-40e9-874e-1000811d126a",
+    "name": "jam",
+    "email": "jam@gmail.com",
+    "password": "123456",
+    "createdAt": "2026-02-16T11:34:55.080Z"
+  }
+]
