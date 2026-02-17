@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import DashboardHeader from "../../components/dashboard-header";
 import { normalizeEmail, readUsers } from "../../lib/user-store";
 
 export default async function HomePage() {
@@ -21,7 +21,9 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_8%_8%,#dceeff_0%,#f4f8fb_34%,#f5efe7_100%)] p-5 lg:p-8">
       <section className="mx-auto w-full max-w-6xl rounded-[28px] border border-[#0d3b661f] bg-white/80 p-6 shadow-[0_24px_50px_rgba(13,59,102,0.14)] backdrop-blur-md lg:p-10">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <DashboardHeader activeTab="home" />
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-grotesk text-xs tracking-[0.12em] text-[#0d3b66]">NOVA DASHBOARD</p>
             <h1 className="mt-2 font-grotesk text-3xl text-[#112f4e]">
@@ -29,12 +31,6 @@ export default async function HomePage() {
             </h1>
             <p className="mt-2 text-[#5f7185]">You are logged in with {user.email}</p>
           </div>
-          <Link
-            href="/logout"
-            className="inline-flex h-fit rounded-xl bg-gradient-to-br from-[#eb5e28] to-[#ff8f5d] px-4 py-2.5 text-sm font-bold text-white transition hover:-translate-y-px"
-          >
-            Logout
-          </Link>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
