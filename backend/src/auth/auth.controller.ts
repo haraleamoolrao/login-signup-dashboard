@@ -1,12 +1,14 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
+  Req,
   Res
 } from "@nestjs/common";
-import type { Response } from "express";
+import type { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 
 type SignupBody = {
@@ -84,5 +86,29 @@ export class AuthController {
     });
 
     return response.json({ message: "Logged out successfully." });
+  }
+
+  @Get("me")
+  async me(@Req() request: Request, @Res() response: Response) {
+    const userEmail = request.cookies?.auth_user;
+
+    if (!userEmail) {
+      return response.status(HttpStatus.UNAUTHORIZED).json({ message: "Not authenticated." });
+    }
+
+    const user = await this.authService.findUserByEmail(userEmail);
+
+    if (!user) {
+      return response.status(HttpStatus.UNAUTHORIZED).json({ message: "User not found." });
+    }
+
+    return response.status(HttpStatus.OK).json({
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt
+      }
+    });
   }
 }

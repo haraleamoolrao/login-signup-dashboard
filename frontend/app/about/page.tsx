@@ -1,7 +1,5 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import DashboardHeader from "../../components/dashboard-header";
-import { normalizeEmail, readUsers } from "../../lib/user-store";
+import { requireSessionUser } from "../../lib/auth-session";
 
 const highlights = [
   { label: "Active Users", value: "2,340" },
@@ -10,19 +8,7 @@ const highlights = [
 ];
 
 export default async function AboutPage() {
-  const cookieStore = await cookies();
-  const userEmail = cookieStore.get("auth_user")?.value;
-
-  if (!userEmail) {
-    redirect("/login");
-  }
-
-  const users = await readUsers();
-  const user = users.find((item) => item.email === normalizeEmail(userEmail));
-
-  if (!user) {
-    redirect("/login");
-  }
+  const user = await requireSessionUser();
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_8%_8%,#dceeff_0%,#f4f8fb_34%,#f5efe7_100%)] p-5 lg:p-8">
