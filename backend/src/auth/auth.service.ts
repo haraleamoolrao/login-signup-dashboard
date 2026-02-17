@@ -12,7 +12,7 @@ export type UserRecord = {
 
 @Injectable()
 export class AuthService {
-  private dataDir = path.join(process.cwd(), "..", "data");
+  private dataDir = path.resolve(__dirname, "..", "..", "data");
   private usersFile = path.join(this.dataDir, "users.json");
 
   private normalizeEmail(email: string) {
@@ -81,5 +81,11 @@ export class AuthService {
     }
 
     return { ok: true as const, status: 200, user };
+  }
+
+  async findUserByEmail(email: string) {
+    const normalizedEmail = this.normalizeEmail(email);
+    const users = await this.readUsers();
+    return users.find((item) => item.email === normalizedEmail) ?? null;
   }
 }
